@@ -6,8 +6,8 @@
 add_action( "admin_notices", function() {
     echo "<div class='updated'>";
     echo "<p>";
-    echo "To insert the posts into the database, click the button to the right.";
-    echo "<a class='button button-primary' style='margin:0.25em 1em' href='{$_SERVER["REQUEST_URI"]}&insert_sitepoint_posts'>Insert Posts</a>";
+    echo "To insert the sermon posts into the database, click the button to the right.";
+    echo "<a class='button button-primary' style='margin:0.25em 1em' href='{$_SERVER["REQUEST_URI"]}&insert_sermon_posts'>Insert Sermon Posts</a>";
     echo "</p>";
     echo "</div>";
 });
@@ -20,17 +20,17 @@ add_action( "admin_init", function() {
 
 	// I'd recommend replacing this with your own code to make sure
 	//  the post creation _only_ happens when you want it to.
-	if ( ! isset( $_GET["insert_sitepoint_posts"] ) ) {
+	if ( ! isset( $_GET["insert_sermon_posts"] ) ) {
 		return;
 	}
 
-	// Change these to whatever you set
-	$sitepoint = array(
-		"custom-field" => "sitepoint_post_attachment",
-		"custom-post-type" => "sitepoint_posts"
+	// Set the custom post data we need fpr the audio file
+	$mysermons = array(
+		"custom-field" => "sermon_post_attachment",
+		"custom-post-type" => "sermon_posts"
 	);
 
-	// Get the data from all those CSVs!
+	// Get the data from all the CSV input file
 	$posts = function() {
 		$data = array();
 		$errors = array();
